@@ -1,0 +1,16 @@
+Email_ID,Subject,Contains_Link,Contains_Attachment,Urgent_Words,From_Trusted_Domain,Label
+1,Urgent: Verify your bank account,Yes,No,Yes,No,Phishing
+2,Meeting schedule for next week,No,Yes,No,Yes,Legit
+3,Claim your lottery prize now,Yes,No,Yes,No,Phishing
+4,Invoice attached for your recent purchase,No,Yes,No,Yes,Legit
+5,Security alert: Unusual login detected,Yes,No,Yes,No,Phishing
+6,Team lunch invitation,No,No,No,Yes,Legit
+7,Update your payment information,Yes,Yes,Yes,No,Phishing
+8,Your order has been shipped,No,No,No,Yes,Legit
+9,Reset your password immediately,Yes,No,Yes,No,Phishing
+10,Happy Birthday from all of us!,No,No,No,Yes,Legit
+11,Verify your email to avoid suspension,Yes,No,Yes,No,Phishing
+12,Monthly performance report attached,No,Yes,No,Yes,Legit
+13,Get rich quick investment opportunity,Yes,No,Yes,No,Phishing
+14,Reminder: Project deadline next Monday,No,No,No,Yes,Legit
+15,Your account will be closed unless you act,Yes,No,Yes,No,Phishing
