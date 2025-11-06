@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Football Today</title>
+  <link id="theme-style" rel="stylesheet" href="/static/css/style.css">
+  <link rel="icon" href="/static/images/favi.png">
+
+</head>
+<body>
+  <div class="container">
+    <header class="navbar">
+  <!-- <div class="nav-logo">Football News</div> -->
+   <img src="/static/images/black.png" alt="H&G Logo" class="logo-img" />
+  <nav class="nav-links">
+    <a href="#" onclick="showTab('epl')">EPL</a>
+    <a href="#" onclick="showTab('predict')">Predict</a>
+    <a href="#" onclick="showTab('history')">History</a>
+    <button id="themeToggle">Dark</button>
+  </nav>
+</header>
+
+    <main>
+      <section id="epl" class="tab">
+      <div class="card">
+    <section class="epl-gallery card">
+  <h2>📸 Premier League Gallery</h2>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <a href="https://www.espn.in/football/match/_/gameId/638148/arsenal-manchester-city"><img src="/static/images/MC vs AR.jpg" alt="Match 1" /></a>
+      <p>Man City vs Arsenal – Key Moments</p>
+    </div>
+    <div class="gallery-item">
+      <a href="https://www.espn.in/football/story/_/id/42649275/liverpool-vs-real-madrid-arne-slot-glad-end-team-hoodoo"><img src="/static/images/liver.avif" alt="Liverpool" /></a>
+      <p>Liverpool Celebrates Another Win</p>
+    </div>
+    <div class="gallery-item">
+      <a href="https://www.reuters.com/sports/soccer/spurs-still-believe-they-can-finish-top-four-says-stellini-2023-04-21/"><img src="/static/images/spurs.jpg" alt="Spurs" /></a>
+      <p>Spurs Push for Top 4</p>
+    </div>
+    <!-- Add more images as needed -->
+  </div>
+</section>
+
+<section class="epl-news card">
+  <h2>📰 Premier League Headlines</h2>
+
+  <article class="news-item">
+    <h3>Premier League May Scrap PSR Rules</h3>
+    <p>The league is considering replacing its Profit and Sustainability Rules with a squad-cost ratio model, aligning more closely with UEFA’s financial regulations.</p>
+  </article>
+
+  <article class="news-item">
+    <h3>EFL Deal Debate Intensifies</h3>
+    <p>Birmingham City chairman Tom Wagner warns that any financial redistribution must not weaken the Premier League’s competitiveness. Talks continue amid regulatory pressure.</p>
+  </article>
+
+  <article class="news-item">
+    <h3>Florian Wirtz Faces Criticism</h3>
+    <p>Liverpool’s £116M signing is under fire for a slow start, but German legend Rudi Völler says Wirtz will soon “show the English” what he’s made of.</p>
+  </article>
+
+  <article class="news-item">
+    <h3>England’s Youngest Manager Speaks Out</h3>
+    <p>Joe Simpson, 29, shares his journey from injury to coaching success after leading King’s Lynn to a 5–1 FA Cup win.</p>
+  </article>
+
+  <footer class="news-footer">
+    <p>Sources: Sky Sports, PremierLeague.com, NewsNow</p>
+  </footer>
+</section>
+</section>
+
+    <section id="predict" class="tab active">
+    <div class="card">
+  <h2>🏆 Match Prediction</h2>
+  <form action="/predict" method="POST">
+    <div class="input-group" value="{{ home_team }}">
+      <label for="HomeTeam">Home Team</label>
+      <select name="HomeTeam" required>
+        <option value="">Select Home Team</option>
+        {% for team in ["Man City","Liverpool","Arsenal","Sunderland","Chelsea","Newcastle","Tottenham","Aston Villa","Man United","Brighton","Fulham","Brentford","Bournemouth","Crystal Palace","West Ham","Nott'm Forest","Wolves","Everton","Leicester","Leeds","Burnley","Luton","Southampton","Watford","Norwich","Ipswich","Sheffield United"] %}
+        <option value="{{ team }}" {% if request.form.get('HomeTeam') == team %}selected{% endif %}>{{ team }}</option>
+      {% endfor %}
+      </select>
+    </div>
+
+    <div class="input-group">
+      <label for="AwayTeam">Away Team</label>
+      <select name="AwayTeam" required>
+        <option value="">Select Home Team</option>
+      {% for team in ["Man City","Liverpool","Arsenal","Sunderland","Chelsea","Newcastle","Tottenham","Aston Villa","Man United","Brighton","Fulham","Brentford","Bournemouth","Crystal Palace","West Ham","Nott'm Forest","Wolves","Everton","Leicester","Leeds","Burnley","Luton","Southampton","Watford","Norwich","Ipswich","Sheffield United"] %}
+        <option value="{{ team }}" {% if request.form.get('AwayTeam') == team %}selected{% endif %}>{{ team }}</option>
+      {% endfor %}
+      </select>
+    </div>
+
+    <div class="input-group">
+    <label>Bet365 Odds</label>
+    <input type="number" step="0.1" name="B365H" placeholder="Home Win Odds"
+           value="{{ request.form.get('B365H','') }}" required />
+    <input type="number" step="0.1" name="B365A" placeholder="Away Win Odds"
+           value="{{ request.form.get('B365A','') }}" required />
+    <input type="number" step="0.1" name="B365D" placeholder="Draw Odds"
+           value="{{ request.form.get('B365D','') }}" required />
+  </div>
+
+      <div class="input-group">
+    <label>Form Scores</label>
+    <input type="number" step="0.01" name="HomeTeam_Form_Score" placeholder="Home Form Score"
+           value="{{ request.form.get('HomeTeam_Form_Score','') }}" required />
+    <input type="number" step="0.01" name="AwayTeam_Form_Score" placeholder="Away Form Score"
+           value="{{ request.form.get('AwayTeam_Form_Score','') }}" required />
+  </div>
+    
+    <div class="input-group">
+  <label for="Referee">Referee</label>
+  <select name="Referee" required>
+    <option value="">Select Referee</option>
+     {% for ref in ["M Oliver","P Tierney","M Atkinson","C Pawson","J Moss","A Marriner","D Coote","S Attwell","M Dean","C Kavanagh","S Hooper","R Jones","A Madley","T Harrington","M Salisbury","J Gillett","D England","K Friend","P Bankes","A Taylor","J Brooks","S Marsh","G Scott","L Mason","D Bond","T Bramall","L Smith","S Barrott","T Robinson","S Singh","S Allison","O Oliver","A Kitchen","D Webb"] %}
+        <option value="{{ ref }}" {% if request.form.get('Referee') == ref %}selected{% endif %}>{{ ref }}</option>
+      {% endfor %}
+  </select>
+</div>
+
+  <div class="input-group">
+    <label for="time">Match Time</label>
+    <input type="text" name="time" placeholder="24hrs Format (20:00)"
+           value="{{ request.form.get('time','') }}" required />
+  </div>
+    <button type="submit" class="btn-primary">Predict</button>
+  </form>
+
+  {% if result %}
+  <div class="result-box">
+    <h3>Prediction Result</h3>
+    <div id="result">{{ result }}</div>
+    <p>Percentage Probabilty:</p>
+    <div class="progress">
+      <div class="progress-bar bg-success" role="progressbar" style="width: {{ home_prob|float }}%" >
+        {{ home_team }} {{ home_prob }}%
+      </div>
+      <div class="progress-bar bg-danger" role="progressbar" style="width: {{ away_prob|float }}%" >
+        {{ away_team }} {{ away_prob }}%
+      </div>
+      <div class="progress-bar bg-warning text-dark" role="progressbar" style="width: {{ draw_prob|float }}%">
+        Draw {{ draw_prob }}%
+      </div>
+    </div>
+  </div>
+{% endif %}
+</div>
+</section>
+
+<section id="history" class="tab">
+  <div class="card">
+    <h2>📊 Team Insights & History</h2>
+
+    <div class="input-group">
+      <label for="home_team_select">Home Team</label>
+      <select id="home_team_select">
+        <option value="">Select Away Team</option>
+        <option value="Man City">Man City</option>
+        <option value="Liverpool">Liverpool</option>
+        <option value="Arsenal">Arsenal</option>
+        <option value="Sunderland">Sunderland</option>
+        <option value="Chelsea">Chelsea</option>
+        <option value="Newcastle">Newcastle</option>
+        <option value="Tottenham">Tottenham</option>
+        <option value="Aston Villa">Aston Villa</option>
+        <option value="Man United">Man United</option>
+        <option value="Brighton">Brighton</option>
+        <option value="Fulham">Fulham</option>
+        <option value="Brentford">Brentford</option>
+        <option value="Bournemouth">Bournemouth</option>
+        <option value="Crystal Palace">Crystal Palace</option>
+        <option value="West Ham">West Ham</option>
+        <option value="Nott'm Forest">Nott'm Forest</option>
+        <option value="Wolves">Wolves</option>
+        <option value="Everton">Everton</option>
+        <option value="Leicester">Leicester</option>
+        <option value="Leeds">Leeds</option>
+        <option value="Burnley">Burnley</option>
+        <option value="Luton">Luton</option>
+        <option value="Southampton">Southampton</option>
+        <option value="Watford">Watford</option>
+        <option value="Norwich">Norwich</option>
+        <option value="Ipswich">Ipswich</option>
+        <option value="Sheffield United">Sheffield United</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <label for="away_team_select">Away Team</label>
+      <select id="away_team_select">
+        <option value="">Select Away Team</option>
+        <option value="Man City">Man City</option>
+        <option value="Liverpool">Liverpool</option>
+        <option value="Arsenal">Arsenal</option>
+        <option value="Sunderland">Sunderland</option>
+        <option value="Chelsea">Chelsea</option>
+        <option value="Newcastle">Newcastle</option>
+        <option value="Tottenham">Tottenham</option>
+        <option value="Aston Villa">Aston Villa</option>
+        <option value="Man United">Man United</option>
+        <option value="Brighton">Brighton</option>
+        <option value="Fulham">Fulham</option>
+        <option value="Brentford">Brentford</option>
+        <option value="Bournemouth">Bournemouth</option>
+        <option value="Crystal Palace">Crystal Palace</option>
+        <option value="West Ham">West Ham</option>
+        <option value="Nott'm Forest">Nott'm Forest</option>
+        <option value="Wolves">Wolves</option>
+        <option value="Everton">Everton</option>
+        <option value="Leicester">Leicester</option>
+        <option value="Leeds">Leeds</option>
+        <option value="Burnley">Burnley</option>
+        <option value="Luton">Luton</option>
+        <option value="Southampton">Southampton</option>
+        <option value="Watford">Watford</option>
+        <option value="Norwich">Norwich</option>
+        <option value="Ipswich">Ipswich</option>
+        <option value="Sheffield United">Sheffield United</option>
+      </select>
+    </div>
+    <br>
+    <button id="showStatsBtn" class="btn-primary">Show Insights</button>
+
+    <div id="chartContainer" style="width:80%;margin:auto;display:none;">
+      <canvas id="h2hChart" height="100" width="100"></canvas>
+      <canvas id="ratingChart" style="margin-top:40px;"></canvas>
+      <canvas id="formChart" style="margin-top:40px;"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+document.getElementById("showStatsBtn").addEventListener("click", async () => {
+  const home = document.getElementById("home_team_select").value;
+  const away = document.getElementById("away_team_select").value;
+
+  if (!home || !away) {
+    alert("Please select both teams first!");
+    return;
+  }
+
+  const response = await fetch("/team_stats", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ home, away })
+  });
+
+  const data = await response.json();
+  document.getElementById("chartContainer").style.display = "block";
+
+  // Clear existing charts
+  document.querySelectorAll("canvas").forEach(c => {
+    const ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, c.width, c.height);
+  });
+
+  // --- H2H Pie Chart ---
+  new Chart(document.getElementById("h2hChart").getContext("2d"), {
+    type: "pie",
+    data: {
+      labels: ["Home Wins", "Draws", "Away Wins"],
+      datasets: [{
+        data: [data.result_counts["1"] || 0, data.result_counts["0"] || 0, data.result_counts["2"] || 0],
+        backgroundColor: ["#36A2EB", "#FFCE56", "#FF6384"]
+      }]
+    },
+    options: { plugins: { title: { display: true, text: `Head-to-Head: ${home} vs ${away}` } } }
+  });
+
+  // --- Ratings Bar Chart ---
+  new Chart(document.getElementById("ratingChart").getContext("2d"), {
+    type: "bar",
+    data: {
+      labels: [home, away],
+      datasets: [{
+        label: "Team Ratings",
+        data: [data.home_rating, data.away_rating],
+        backgroundColor: ["#4BC0C0", "#FF6384"]
+      }]
+    },
+    options: { scales: { y: { beginAtZero: true, max: 1 } }, plugins: { title: { display: true, text: "Team Ratings" } } }
+  });
+
+  // --- Form Line Chart ---
+  new Chart(document.getElementById("formChart").getContext("2d"), {
+    type: "line",
+    data: {
+      labels: ["Match 1", "Match 2", "Match 3", "Match 4", "Match 5"],
+      datasets: [
+        {
+          label: `${home} Form`,
+          data: data.home_form,
+          borderColor: "#36A2EB",
+          fill: false
+        },
+        {
+          label: `${away} Form`,
+          data: data.away_form,
+          borderColor: "#FF6384",
+          fill: false
+        }
+      ]
+    },
+    options: { plugins: { title: { display: true, text: "Recent 5 Match Form (1=Win, 0=Draw, 2=Loss)" } } }
+  });
+});
+</script>
+    </main>
+  </div>
+
+  <script src="/static/js/script.js"></script>
+  <script>
+  const toggleBtn = document.getElementById('themeToggle');
+  const themeLink = document.getElementById('theme-style');
+
+  let currentTheme = 'style';
+
+  toggleBtn.addEventListener('click', () => {
+    currentTheme = currentTheme === 'style' ? 'style1' : 'style';
+    themeLink.setAttribute('href', `/static/css/${currentTheme}.css`);
+    toggleBtn.textContent = currentTheme === 'style' ? 'Dark' : 'Light';
+  });
+</script>
+</body>
+</html>

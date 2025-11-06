@@ -1,0 +1,250 @@
+/* Maroon(Basic) Theme */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Georgia', serif;
+  background-color: #fdf6ec;
+  color: #3e1f1f;
+  line-height: 1.6;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* Header */
+header {
+  background-color: #580000;
+  color: white;
+  padding: 30px 20px;
+  border-bottom: 4px solid #d4af37;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  font-family: 'Georgia', serif;
+  margin-bottom: 10px;
+}
+
+/* Navigation */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #620000;
+  color: white;
+  padding: 15px 30px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-family: 'Georgia', serif;
+}
+
+
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #d4af37;
+}
+
+/* Tabs */
+.tab {
+  display: none;
+  margin-top: 40px;
+}
+
+.tab.active {
+  display: block;
+}
+
+/* Section Headings */
+.tab h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #a67c52;
+  padding-bottom: 5px;
+}
+
+/* Card Layout */
+.card {
+  background-color: white;
+  border: 1px solid #d4af37;
+  border-radius: 5px;
+  padding: 25px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Form Styling */
+form {
+  display: grid;
+  gap: 15px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #a67c52;
+  border-radius: 4px;
+  background-color: #fffaf3;
+  font-size: 1rem;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+button.btn-primary {
+  background-color: #620000;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button.btn-primary:hover {
+  background-color: #b70202;
+}
+
+/* Result Box */
+.result-box {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #fffaf3;
+  border-left: 5px solid #a67c52;
+  border-radius: 5px;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: white;
+}
+
+th, td {
+  padding: 12px;
+  border: 1px solid #d4af37;
+  text-align: left;
+}
+
+th {
+  background-color: #fdf6ec;
+  font-weight: bold;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: 60px;
+  padding: 20px;
+  font-size: 0.9rem;
+  color: #6b3f3f;
+  border-top: 1px solid #d4af37;
+}
+
+.epl-news {
+  background-color: white;
+  padding: 25px;
+  border-left: 5px solid #a67c52;
+  margin-bottom: 40px;
+}
+
+.epl-news h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #4b2e2e;
+}
+
+.news-item {
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e6d3c2;
+}
+
+.news-item h3 {
+  font-size: 1.2rem;
+  color: #3e1f1f;
+  margin-bottom: 5px;
+}
+
+.news-item p {
+  font-size: 0.95rem;
+  color: #5a3f3f;
+}
+
+.news-footer {
+  margin-top: 20px;
+  font-size: 0.85rem;
+  color: #6b3f3f;
+  border-top: 1px solid #d4af37;
+  padding-top: 10px;
+}
+
+.epl-gallery {
+  background-color: white;
+  padding: 25px;
+  border-left: 5px solid #a67c52;
+  margin-bottom: 40px;
+}
+
+.epl-gallery h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #4b2e2e;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.gallery-item {
+  background-color: #fffaf3;
+  border: 1px solid #d4af37;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  text-align: center;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.gallery-item p {
+  padding: 10px;
+  font-size: 0.9rem;
+  color: #3e1f1f;
+}
